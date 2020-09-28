@@ -1,0 +1,425 @@
+\documentclass[a4paper, 12pt]{article}
+
+%Ukrainian language
+
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,ukrainian]{babel}
+
+%Math
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+
+% Images
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+%Plots
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{patterns}
+
+%Title
+\author{Демедюк Віталій}
+\title{Дослідження операцій\\
+	   Домашня робота №1}
+\date{\today}
+
+%Text color
+\usepackage{xcolor}
+
+\usepackage[pdftex,
+colorlinks,%
+linkcolor=blue,citecolor=red,urlcolor=blue,
+hyperindex,%
+plainpages=false,%
+bookmarksopen,%
+bookmarksnumbered,%
+unicode]{hyperref}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+
+
+\newpage
+
+\section{Графічний метод}
+
+\subsection{Умова}
+Цільова функція:
+
+\begin{equation}
+L = 2x_1 + x_2 \rightarrow \max
+\end{equation}
+Обмеження:
+
+\begin{equation}
+\left\{
+\begin{aligned}
+	x_1 &+ 2x_2 \leq 7,\\
+	5x_1 &+ 7x_2 \geq 4,\\
+	3x_1 &- 2x_2 \leq 10,\\
+	x_1 &\geq 0, x_2 \geq 0. 
+\end{aligned}
+\right.
+\end{equation}
+
+\subsection{Попередні розрахунки}
+
+%Перше обмеження
+\[ \text{1) } x_1 + 2x_2 \leq 7 \Longleftrightarrow 
+	x_2 \leq \frac{7}{2} - \frac{x_1}{2} \]
+
+\[ \left(0,\frac{7}{2}\right), \left(7,0\right)\ \text{- точки, через які проходить функція } x_2 = \frac{7}{2} - \frac{x_1}{2} \]
+
+%Друге обмеження
+\[ \text{2) } 5x_1 + 7x_2 \geq 4 \Longleftrightarrow 
+	 x_2 \geq \frac{4}{7} - \frac{5x_1}{7} \]
+
+\[ \left(0,\frac{4}{7}\right), \left(\frac{4}{5},0\right)\ \text{- точки, через які проходить функція } x_2 = \frac{4}{7} - \frac{5x_1}{7} \]
+
+%Третє обмеження
+\[ \text{3) } 3x_1 - 2x_2 \leq 10 \Longleftrightarrow 
+	 x_2 \geq \frac{3x_1}{2} - 5 \]
+
+\[ \left(0,-5\right), \left(\frac{10}{3},0\right)\ \text{- точки, через які проходить функція } x_2 = \frac{3x_1}{2} - 5 \]
+
+%Перетин {x_2 = \frac{7}{2} - \frac{x_1}{2}, x_2 = \frac{3x_1}{2} - 5}
+\[
+\left\{
+\begin{aligned}
+	x_1 &+ 2x_2 = 7,\\
+	3x_1 &- 2x_2 = 10.
+\end{aligned}
+\right.
+\Longleftrightarrow
+\left\{
+\begin{aligned}
+	x_2 &= \frac{7}{2} - \frac{x_1}{2},\\
+	x_2 &= \frac{3x_1}{2} - 5.
+\end{aligned}
+\right.
+\Longleftrightarrow
+\left(x_1, x_2\right) = \left(\frac{17}{4}, \frac{11}{8}\right) - \text{ - точка перетину}
+\]
+
+%Функція L
+\[ \text{4) } 2x_1 + x_2 = a \Longleftrightarrow x_2 = -2x_1 + a \]
+\[ a = 0, x_2 = -2x_1, (0,0), (-1, 2) \text{ - точки, через які проходить функція} \]
+\[x_2 = -2x_1 + a, \text{при } (x_1, x_2) = \left(\frac{17}{4},\frac{11}{8}\right) \text{ } a = \frac{79}{8} \]
+
+\[ \left(\frac{\partial L}{\partial x_1}, \frac{\partial L}{\partial x_2} \right) = \left( 2, 1 \right) \text{ -- градіент(вектор нормалі)}\]
+
+\subsection{Графік}
+
+\begin{figure}[h!]
+\begin{tikzpicture}
+
+\fill [pattern=north west lines, pattern color=gray] (0,4/7) -- (4/5,0) -- (10/3,0) -- (17/4,11/8) -- (0,7/2);
+
+\draw[very thin,color=gray] (-1,-1) grid (8,6);
+\draw[->] (-1,0) -- (8,0) node[right] {$x_1$};
+\draw[->] (0,-1) -- (0,6) node[above] {$x_2$};
+\draw[color=red, domain=-0.5:5]    plot (\x,7/2-\x/2)             node[left] {$x_2 = \frac{7}{2} - \frac{x_1}{2}$};
+\draw[color=blue, domain=-0.5:1]    plot (\x,4/7-5*\x/7)             node[left] {$x_2 = \frac{4}{7} - \frac{5x_1}{7}$};
+\draw[color=green, domain=3:5]    plot (\x,3*\x/2 - 5)             node[left] {$x_2 = \frac{3x_1}{2} - 5$};
+\draw[color=purple, domain=-1:0.5]    plot (\x,-2*\x)             node[left] {$x_2 = \frac{3x_1}{2} - 5$};
+\draw[color=purple, domain=3:5]    plot (\x,-2*\x + 79/8)             node[left] {$x_2 = \frac{3x_1}{2} - 5$};
+
+\draw[->] (0,0) -- (2,1) node[right] {};
+
+\filldraw[black] (0,0) circle (2pt) node[anchor=north] {};
+\filldraw[black] (0,4/7) circle (2pt) node[anchor=west] {};
+\filldraw[black] (4/5,0) circle (2pt) node[anchor=west] {};
+\filldraw[black] (10/3,0) circle (2pt) node[anchor=west] {};
+\filldraw[black] (17/4,11/8) circle (2pt) node[anchor=west] {A};
+\filldraw[black] (0,7/2) circle (2pt) node[anchor=west] {};
+
+\end{tikzpicture}	
+\end{figure}
+
+В точці $A$ функція $L$ досягає свого максимуму.
+$L\left(\frac{17}{4},\frac{11}{8}\right) = \frac{79}{8}. $
+
+
+\section{Стандартна задача лінійного програмування}
+
+\subsection{ЗЗЛП $\rightarrow$ СЗЛП}
+
+Цільова функція:
+
+\begin{equation}
+L = -2x_1 - x_2 \rightarrow \min
+\end{equation}
+Обмеження:
+
+\[
+\left\{
+\begin{aligned}
+	x_1 &+ 2x_2 + x_3 \textcolor{white}{+ 0x_4 + 0x_5} = 7,\\
+	5x_1 &+ 7x_2 \textcolor{white}{+ 0x_33} - x_4 \textcolor{white}{+ 0x_5} = 4,\\
+	3x_1 &- 2x_2 \textcolor{white}{+ 0x_3 + 0x_4} + x_5 = 10.\\ 
+\end{aligned}
+\right.
+\]
+
+\[ x_1, x_2, x_3, x_4, x_5 \geq 0 \]
+
+\subsection{Розв'язання СЗЛП}
+
+\[ \begin{pmatrix}
+A_1 & A_2 & A_3 & A_4 & A_5\\
+1 & 2 & 1 & 0 & 0\\
+5 & 7 & 0 & -1 & 0\\
+3 & -2 & 0 & 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+x_1\\
+x_2\\
+x_3\\
+x_4\\
+x_5
+\end{pmatrix} = 
+\begin{pmatrix}
+7\\
+4\\
+10
+\end{pmatrix} \]
+
+\subsubsection{Базис $<A_1, A_2, A_3>$}
+
+\[ x_4 = 0, x_5 = 0 \]
+
+\[ 
+\begin{pmatrix}
+A_1 & A_2 & A_3 &&& & \\
+1 & 2 & 1 & 0 & 0 & \vrule & 7\\
+5 & 7 & 0 & 0 & 0 & \vrule & 4\\
+3 & -2 & 0 & 0 & 0 & \vrule & 10 
+\end{pmatrix}
+\sim
+\begin{pmatrix}
+A_1 & A_2 & A_3 &&& & \\
+1 & 0 & 0 & 0 & 0 & \vrule & \frac{78}{31}\\
+0 & 1 & 0 & 0 & 0 & \vrule & \frac{-38}{31}\\
+0 & 0 & 1 & 0 & 0 & \vrule & \frac{215}{31} 
+\end{pmatrix}
+\]
+
+\[ \left( x_1, x_2, x_3, x_4, x_5 \right) = \left( \frac{78}{31}, \frac{-38}{31}, \frac{215}{31}, 0, 0 \right) \left( \text{\textbf{Псевдобазис}} \right) \] 
+
+\subsubsection{Базис $<A_1, A_2, A_4>$}
+
+\[ x_3 = 0, x_5 = 0 \]
+
+\[
+\begin{pmatrix}
+A_1 & A_2 & & A_4 & & & \\
+1 & 2 & 0 & 0 & 0 & \vrule & 7\\
+5 & 7 & 0 & -1 & 0 & \vrule & 4\\
+3 & -2 & 0 & 0 & 0 & \vrule & 10 
+\end{pmatrix}
+\sim
+\begin{pmatrix}
+A_1 & A_2 & & A_4 & & & \\
+1 & 0 & 0 & 0 & 0 & \vrule & \frac{17}{4}\\
+0 & 1 & 0 & 0 & 0 & \vrule & \frac{11}{8}\\
+0 & 0 & 0 & 1 & 0 & \vrule & \frac{215}{8} 
+\end{pmatrix} 
+\]
+
+\[ \left( x_1, x_2, x_3, x_4, x_5 \right) = \left( \frac{17}{4}, \frac{11}{8}, 0, \frac{215}{8}, 0 \right) \left( \text{ \textbf{Допустимий базисний розв'язок}} \right) \] 
+
+\subsubsection{Базис $<A_1, A_2, A_5>$}
+
+\[ x_3 = 0, x_4 = 0 \]
+
+\[ 
+\begin{pmatrix}
+A_1 & A_2 &  &  & A_5 & & \\
+1 & 2 & 0 & 0 & 0 & \vrule & 7\\
+5 & 7 & 0 & 0 & 0 & \vrule & 4\\
+3 & -2 & 0 & 0 & 1 & \vrule & 10 
+\end{pmatrix} 
+\sim
+\begin{pmatrix}
+A_1 & A_2 &  &  & A_5 & & \\
+1 & 0 & 0 & 0 & 0 & \vrule & \frac{-41}{3}\\
+0 & 1 & 0 & 0 & 0 & \vrule & \frac{31}{3}\\
+0 & 0 & 0 & 0 & 1 & \vrule & \frac{215}{3} 
+\end{pmatrix} 
+\]
+
+\[ \left( x_1, x_2, x_3, x_4, x_5 \right) = \left( \frac{-41}{3}, \frac{31}{3}, 0, 0, \frac{215}{3} \right) \left( \text{\textbf{Псевдобазис}} \right) \] 
+
+\subsubsection{Базис $<A_1, A_3, A_4>$}
+
+\[ x_2 = 0, x_5 = 0 \]
+
+\[ 
+\begin{pmatrix}
+A_1 & & A_3 & A_4 &  & & \\
+1 & 0 & 1 & 0 & 0 & \vrule & 7\\
+5 & 0 & 0 & -1 & 0 & \vrule & 4\\
+3 & 0 & 0 & 0 & 0 & \vrule & 10 
+\end{pmatrix}
+\sim
+\begin{pmatrix}
+A_1 & & A_3 & A_4 &  & & \\
+1 & 0 & 0 & 0 & 0 & \vrule & \frac{10}{3}\\
+0 & 0 & 1 & 0 & 0 & \vrule & \frac{11}{3}\\
+0 & 0 & 0 & 1 & 0 & \vrule & \frac{38}{3} 
+\end{pmatrix}
+\]
+
+\[ \left( x_1, x_2, x_3, x_4, x_5 \right) = \left( \frac{10}{3}, 0, \frac{11}{3}, \frac{38}{3}, 0 \right) \left(  \text{ \textbf{Допустимий базисний розв'язок}} \right) \] 
+
+\subsubsection{Базис $<A_1, A_3, A_5>$}
+
+\[ x_2 = 0, x_4 = 0 \]
+
+\[ 
+\begin{pmatrix}
+A_1 &  & A_3 &  & A_5 & & \\
+1 & 0 & 1 & 0 & 0 & \vrule & 7\\
+5 & 0 & 0 & 0 & 0 & \vrule & 4\\
+3 & 0 & 0 & 0 & 1 & \vrule & 10 
+\end{pmatrix}
+\sim
+\begin{pmatrix}
+A_1 & & A_3 & & A_5 & & \\
+1 & 0 & 0 & 0 & 0 & \vrule & \frac{4}{5}\\
+0 & 0 & 1 & 0 & 0 & \vrule & \frac{31}{5}\\
+0 & 0 & 0 & 0 & 1 & \vrule & \frac{38}{5} 
+\end{pmatrix}
+\]
+
+\[ \left( x_1, x_2, x_3, x_4, x_5 \right) = \left( \frac{4}{5}, 0, \frac{31}{5}, 0, \frac{38}{5} \right) \left( \text{ \textbf{Допустимий базисний розв'язок}}\right) \] 
+
+\subsubsection{Базис $<A_1, A_4, A_5>$}
+
+\[ x_2 = 0, x_3 = 0 \]
+
+\[ 
+\begin{pmatrix}
+A_1 & &  & A_4 & A_5 & & \\
+1 & 0 & 0 & 0 & 0 & \vrule & 7\\
+5 & 0 & 0 & -1 & 0 & \vrule & 4\\
+3 & 0 & 0 & 0 & 1 & \vrule & 10 
+\end{pmatrix}
+\sim
+\begin{pmatrix}
+A_1 & &  & A_4 & A_5 & & \\
+1 & 0 & 0 & 0 & 0 & \vrule & 7\\
+0 & 0 & 0 & 1 & 0 & \vrule & 31\\
+0 & 0 & 0 & 0 & 1 & \vrule & -11 
+\end{pmatrix}
+\]
+
+\[ \left( x_1, x_2, x_3, x_4, x_5 \right) = \left( 7, 0, 0, 31, -11 \right) \left( \text{\textbf{Псевдобазис}} \right) \] 
+
+\subsubsection{Базис $<A_2, A_3, A_4>$}
+
+\[ x_1 = 0, x_5 = 0 \]
+
+\[ 
+\begin{pmatrix}
+ & A_2 & A_3 & A_4 &  & & \\
+0 & 2 & 1 & 0 & 0 & \vrule & 7\\
+0 & 7 & 0 & -1 & 0 & \vrule & 4\\
+0 & -2 & 0 & 0 & 0 & \vrule & 10 
+\end{pmatrix} 
+\sim
+\begin{pmatrix}
+ & A_2 & A_3 & A_4 &  & & \\
+0 & 1 & 0 & 0 & 0 & \vrule & -5\\
+0 & 0 & 1 & 0 & 0 & \vrule & 17\\
+0 & 0 & 0 & 1 & 0 & \vrule & -39 
+\end{pmatrix} 
+\]
+
+\[ \left( x_1, x_2, x_3, x_4, x_5 \right) = \left( 0, -5, 17, -39, 0 \right) \left( \text{\textbf{Псевдобазис}} \right) \] 
+
+\subsubsection{Базис $<A_2, A_3, A_5>$}
+
+\[ x_1 = 0, x_4 = 0 \]
+
+\[ 
+\begin{pmatrix}
+ & A_2 & A_3 &  & A_5 & & \\
+0 & 2 & 1 & 0 & 0 & \vrule & 7\\
+0 & 7 & 0 & 0 & 0 & \vrule & 4\\
+0 & -2 & 0 & 0 & 1 & \vrule & 10 
+\end{pmatrix} 
+\sim
+\begin{pmatrix}
+ & A_2 &  & A_4 & A_5 & & \\
+0 & 1 & 0 & 0 & 0 & \vrule & \frac{4}{7}\\
+0 & 0 & 0 & 1 & 0 & \vrule & \frac{41}{7}\\
+0 & 0 & 0 & 0 & 1 & \vrule & \frac{78}{7} 
+\end{pmatrix}
+\]
+
+\[ \left( x_1, x_2, x_3, x_4, x_5 \right) = \left( 0, \frac{4}{7}, 0, \frac{41}{7}, \frac{78}{7} \right) \left(\text{ \textbf{Допустимий базисний розв'язок}}  \right) \] 
+
+\subsubsection{Базис $<A_2, A_4, A_5>$}
+
+\[ x_1 = 0, x_3 = 0 \]
+
+\[ 
+\begin{pmatrix}
+ & A_2 &  & A_4 & A_5 & & \\
+0 & 2 & 0 & 0 & 0 & \vrule & 7\\
+0 & 7 & 0 & -1 & 0 & \vrule & 4\\
+0 & -2 & 0 & 0 & 1 & \vrule & 10 
+\end{pmatrix} 
+\sim
+\begin{pmatrix}
+ & A_2 &  & A_4 & A_5 & & \\
+0 & 1 & 0 & 0 & 0 & \vrule & \frac{7}{2}\\
+0 & 0 & 0 & 1 & 0 & \vrule & \frac{41}{2}\\
+0 & 0 & 0 & 0 & 1 & \vrule & 17 
+\end{pmatrix}
+\]
+
+\[ \left( x_1, x_2, x_3, x_4, x_5 \right) = \left( 0, \frac{7}{2}, 0, \frac{41}{2}, 17 \right) \left( \text{\textbf{Допустимий базисний розв'язок}} \right) \] 
+
+\subsubsection{Базис $<A_3, A_4, A_5>$}
+\[ x_1 = 0, x_2 = 0 \]
+
+\[ 
+\begin{pmatrix}
+ &  & A_3 & A_4 & A_5 & & \\
+0 & 0 & 1 & 0 & 0 & \vrule & 7\\
+0 & 0 & 0 & -1 & 0 & \vrule & 4\\
+0 & 0 & 0 & 0 & 1 & \vrule & 10 
+\end{pmatrix}
+\sim
+\begin{pmatrix}
+ &  & A_3 & A_4 & A_5 & & \\
+0 & 0 & 1 & 0 & 0 & \vrule & 7\\
+0 & 0 & 0 & 1 & 0 & \vrule & -4\\
+0 & 0 & 0 & 0 & 1 & \vrule & 10 
+\end{pmatrix} 
+\]
+
+\[ \left( x_1, x_2, x_3, x_4, x_5 \right) = \left( 0, 0, 7, -4, 10 \right) \left( \text{\textbf{Псевдобазис}} \right) \] 
+
+\subsubsection{Перевірка допустимих розв'язків}
+
+\[ L\left(x_1, x_2\right) = -2x_1 - x_2 \longrightarrow \min \]
+
+\[ \text{1) } L\left(
+\frac{17}{4}, \frac{11}{8} \right) = \frac{-79}{8} \]
+\[ \text{2) } L\left(\frac{10}{3}, 0\right) = \frac{-20}{3} \]
+\[ \text{3) } L\left(\frac{4}{5}, 0\right) = \frac{-8}{5} \]
+\[ \text{4) } L\left(0, \frac{4}{7}\right) = \frac{-4}{7} \]
+\[ \text{5) } L\left(0, \frac{7}{2}\right) = \frac{-7}{2} \] 
+
+\[ \text{Відповідь: }(x_1^*, x_2^*) = \left(\frac{17}{4}, \frac{11}{8} \right) \]
+
+
+\end{document}
