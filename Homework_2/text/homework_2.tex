@@ -1,0 +1,407 @@
+\documentclass[a4paper, 12pt]{article}
+
+%Ukrainian language
+
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,ukrainian]{babel}
+
+%Math
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+
+% Images
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+%Plots
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{patterns}
+
+%Title
+\author{Демедюк Віталій}
+\title{Дослідження операцій\\
+	   Домашня робота №2}
+\date{\today}
+
+%Text color
+\usepackage{xcolor}
+
+%Multirow
+\usepackage{multirow}
+
+\usepackage{float}
+
+\usepackage[pdftex,
+colorlinks,%
+linkcolor=blue,citecolor=red,urlcolor=blue,
+hyperindex,%
+plainpages=false,%
+bookmarksopen,%
+bookmarksnumbered,%
+unicode]{hyperref}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+
+
+\newpage
+
+\section{ЗЗЛП $\rightarrow$ КЗЛП}
+
+\subsection{ЗЗЛП}
+
+Цільова функція:
+
+\begin{equation*}
+L = 2x_1 + x_2 \rightarrow \max
+\end{equation*}
+Обмеження:
+
+\begin{equation*}
+\left\{
+\begin{aligned}
+	x_1 &+ 2x_2 \leq 7,\\
+	5x_1 &+ 7x_2 \geq 4,\\
+	3x_1 &- 2x_2 \leq 10,\\
+	x_1 &\geq 0, x_2 \geq 0. 
+\end{aligned}
+\right.
+\end{equation*}
+
+\subsection{ЗЗЛП $\rightarrow$ СЗЛП}
+
+Цільова функція:
+
+\begin{equation*}
+L = -2x_1 - x_2 + 0x_3 + 0x_4 + 0x_5 \rightarrow \min
+\end{equation*}
+Обмеження:
+
+\[
+\left\{
+\begin{aligned}
+	x_1 &+ 2x_2 + x_3 \textcolor{white}{+ 0x_4 + 0x_5} = 7,\\
+	5x_1 &+ 7x_2 \textcolor{white}{+ 0x_33} - x_4 \textcolor{white}{+ 0x_5} = 4,\\
+	3x_1 &- 2x_2 \textcolor{white}{+ 0x_3 + 0x_4} + x_5 = 10.\\ 
+\end{aligned}
+\right.
+\]
+
+\[ x_1, x_2, x_3, x_4, x_5 \geq 0 \]
+
+
+\subsection{СЗЛП $\rightarrow$ КЗЛП (М-задача)}
+
+Запишемо СЗЛП у векторній формі
+
+\begin{equation*}
+\overline{x} = \left(x_1, x_2, x_3, x_4, x_5\right)^T \text{ -- вектор-стовпець змінних}
+\end{equation*}
+
+\begin{equation*}
+\overline{c} = \left(c_1, c_2, c_3, c_4, c_5\right) = (-2,-1,0,0,0) \text{ -- вектор коефіціентів у фунції } L
+\end{equation*}
+
+\begin{equation*}
+L = \overline{c}\overline{x} \rightarrow \min
+\end{equation*}
+
+$A - \text{матриця коефіціентів системи обмежень}$
+
+\begin{equation*}
+ A = \Vert a_{ij} \Vert = 
+\begin{pmatrix}
+	1 & 2 & 1 & 0 & 0\\
+	5 & 7 & 0 & -1 & 0\\
+	3 & -2 & 0 & 0 & 1
+\end{pmatrix}
+\end{equation*}
+
+$ \overline{b} - \text{вектор, що } A\overline{x} = \overline{b} $
+
+\begin{equation*}
+ \overline{b} = \left( 7, 4, 10 \right)^T
+\end{equation*}
+
+В КЗЛП повинні виконуватися наступні умови:
+
+$\overline{b} \geqslant \overline{0} \text{, } \overline{x} \geqslant \overline{0} \text{, } A\overline{x} = \overline{b} \text{, } A - \text{містить одиничну підматрицю}$\\
+
+Можемо побачити, що у нас не виконується остання умова, тому скористаємся М-методом, щоб добавити штучний базис та отримати М-задачу з початковим базисним роз'язком\\
+
+\begin{equation*}
+L' = -2x_1 - x_2 + 0x_3 + 0x_4 + 0x_5 + M(y_1) \rightarrow \min
+\end{equation*}
+
+
+\[
+\left\{
+\begin{aligned}
+	x_1 &+ 2x_2 + x_3 \textcolor{white}{+ 0x_4 + 0x_5 + y_1} = 7,\\
+	5x_1 &+ 7x_2 \textcolor{white}{+ 0x_33} - x_4 \textcolor{white}{+ 0x_5} + y_1 = 4,\\
+	3x_1 &- 2x_2 \textcolor{white}{+ 0x_3 + 0x_4} + x_5 \textcolor{white}{+ 0y_1} = 10.\\ 
+\end{aligned}
+\right.
+\]
+
+Векторна форма
+
+\begin{equation*}
+\overline{x'} = \left(x_1, x_2, x_3, x_4, x_5, y_1\right)^T
+\end{equation*}
+
+\begin{equation*}
+\overline{c'} = \left(c_1, c_2, c_3, c_4, c_5, c_6\right) = (-2,-1,0,0,0, M)
+\end{equation*}
+
+\begin{equation*}
+L' = \overline{c'}\overline{x'} \rightarrow \min
+\end{equation*}
+
+\begin{equation*}
+A' = \Vert a_{ij} \Vert = 
+\begin{pmatrix}
+	1 & 2 & 1 & 0 & 0 & 0\\
+	5 & 7 & 0 & -1 & 0 & 1\\
+	3 & -2 & 0 & 0 & 1 & 0
+\end{pmatrix}
+\end{equation*}
+
+\begin{equation*}
+ \overline{b} = \left( 7, 4, 10 \right)^T
+\end{equation*}
+
+\begin{equation*}
+ A'\overline{x'} = \overline{b}
+\end{equation*}
+
+
+\section{Симплекс-метод}
+
+\subsection{Розв'язок М-задачі симплекс-методом}
+
+\subsubsection{Крок №1}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+         &  & $c_1$ & $c_2$ & $c_3$ & $c_4$ & $c_5$ & $c_6$ & & \\ \hline
+         &  & -2 & -1 & 0 & 0 & 0 & M &  &  \\ \hline
+         $c_\text{б}$ & $X_\text{б}$ & $A_1$ & $A_2$ & $A_3$ & $A_4$ & $A_5$ & $A_6$ & $b$  & $\Theta$ \\ \hline
+        0 & $x_3$ & 1 & 2 & 1 & 0 & 0 & 0 & 7 & 7/2 \\ \hline
+        M & $x_6$ & 5 & 7 & 0 & -1 & 0 & 1 & 4 & 4/7 \\ \hline
+        0 & $x_5$ & 3 & -2 & 0 & 0 & 1 & 0 & 10 &  \\ \hline
+         & $\Delta_j$ & -2-5M & -1-7M & 0 & M & 0 & 0 &  &  \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{equation*}
+	\Delta_j = c_j - \sum_{i=1}^{3} c_\text{бi} \alpha_{ij}  
+\end{equation*}
+
+\begin{equation*}
+	\Delta_k = \min_{j=1 \dots 6} \Delta_j = \Delta_2 = -1-7M
+\end{equation*}
+
+\begin{equation*}
+	\Theta_t = \min_{i: \Theta_i \geqslant 0} \Theta_i = \Theta_2 = \frac{4}{7}
+\end{equation*}
+
+\begin{equation*}
+	\Theta_t = \frac{b_t}{c_\text{bt}} = \frac{b_t}{c_l} = \frac{b_2}{c_\text{b2}} = \frac{b_2}{c_\text{6}}
+\end{equation*}
+
+$t = 2$ - ведучий рядок
+
+$k = 2$ - ведучий стовпець
+
+$a_{tk} = a_{22}$ - ведучий елемент
+
+$l = 6$
+
+$l$-у змінну виводимо з базису і вводимо $k$-у.
+
+\subsubsection{Крок №2}
+
+Перерахуємо симплекс-таблицю і отримаємо:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+         &  & $c_1$ & $c_2$ & $c_3$ & $c_4$ & $c_5$ & $c_6$ & & \\ \hline
+         &  & -2 & -1 & 0 & 0 & 0 & M &  &  \\ \hline
+         $c_\text{б}$ & $X_\text{б}$ & $A_1$ & $A_2$ & $A_3$ & $A_4$ & $A_5$ & $A_6$ & $b$  & $\Theta$ \\ \hline
+        0 & $x_3$ & -3/7 & 0 & 1 & 2/7 & 0 & -2/7 & 41/7 &  \\ \hline
+        -1 & $x_2$ & 5/7 & 1 & 0 & -1/7 & 0 & 1/7 & 4/7 & 4/5 \\ \hline
+        0 & $x_5$ & 31/7 & 0 & 0 & -2/7 & 1 & 2/7 & 78/7 & 78/31 \\ \hline
+         & $\Delta_j$ & -9/7 & 0 & 0 & -1/7 & 0 & 1/7 &  &  \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{equation*}
+	\Delta_j = c_j - \sum_{i=1}^{3} c_\text{бi} \alpha_{ij}  
+\end{equation*}
+
+\begin{equation*}
+	\Delta_k = \min_{j=1 \dots 6} \Delta_j = \Delta_1 = -\frac{9}{7}
+\end{equation*}
+
+\begin{equation*}
+	\Theta_t = \min_{i: \Theta_i \geqslant 0} \Theta_i = \Theta_2 = \frac{4}{5}
+\end{equation*}
+
+\begin{equation*}
+	\Theta_t = \frac{b_t}{c_\text{bt}} = \frac{b_t}{c_l} = \frac{b_2}{c_\text{b2}} = \frac{b_2}{c_\text{2}}
+\end{equation*}
+
+$t = 2$ - ведучий рядок
+
+$k = 1$ - ведучий стовпець
+
+$a_{tk} = a_{21}$ - ведучий елемент
+
+$l = 2$
+
+$l$-у змінну виводимо з базису і вводимо $k$-у.
+
+\subsubsection{Крок №3}
+
+Перерахуємо симплекс-таблицю і отримаємо:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+         &  & $c_1$ & $c_2$ & $c_3$ & $c_4$ & $c_5$ & $c_6$ & & \\ \hline
+         &  & -2 & -1 & 0 & 0 & 0 & M &  &  \\ \hline
+         $c_\text{б}$ & $X_\text{б}$ & $A_1$ & $A_2$ & $A_3$ & $A_4$ & $A_5$ & $A_6$ & $b$  & $\Theta$ \\ \hline
+        0 & $x_3$ & 0 & 3/5 & 1 & 1/5 & 0 & -1/5 & 31/5 & 31 \\ \hline
+        -2 & $x_1$ & 1 & 7/5 & 0 & -1/5 & 0 & 1/5 & 4/5 & \\ \hline
+        0 & $x_5$ & 0 & -31/5 & 0 & 3/5 & 1 & -3/5 & 38/5 & 38/3 \\ \hline
+         & $\Delta_j$ & 0 & 9/5 & 0 & -3 & 0 & 3 &  &  \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{equation*}
+	\Delta_j = c_j - \sum_{i=1}^{3} c_\text{бi} \alpha_{ij}  
+\end{equation*}
+
+\begin{equation*}
+	\Delta_k = \min_{j=1 \dots 6} \Delta_j = \Delta_4 = -3
+\end{equation*}
+
+\begin{equation*}
+	\Theta_t = \min_{i: \Theta_i \geqslant 0} \Theta_i = \Theta_3 = \frac{38}{3}
+\end{equation*}
+
+\begin{equation*}
+	\Theta_t = \frac{b_t}{c_\text{bt}} = \frac{b_t}{c_l} = \frac{b_3}{c_\text{b3}} = \frac{b_3}{c_\text{5}}
+\end{equation*}
+
+$t = 3$ - ведучий рядок
+
+$k = 4$ - ведучий стовпець
+
+$a_{tk} = a_{34}$ - ведучий елемент
+
+$l = 5$
+
+$l$-у змінну виводимо з базису і вводимо $k$-у.
+
+\subsubsection{Крок №4}
+
+Перерахуємо симплекс-таблицю і отримаємо:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+         &  & $c_1$ & $c_2$ & $c_3$ & $c_4$ & $c_5$ & $c_6$ & & \\ \hline
+         &  & -2 & -1 & 0 & 0 & 0 & M &  &  \\ \hline
+         $c_\text{б}$ & $X_\text{б}$ & $A_1$ & $A_2$ & $A_3$ & $A_4$ & $A_5$ & $A_6$ & $b$  & $\Theta$ \\ \hline
+        0 & $x_3$ & 0 & 8/3 & 1 & 0 & -1/3 & 0 & 11/3 & 11/8 \\ \hline
+        -2 & $x_1$ & 1 & -2/3 & 0 & 0 & 1/3 & 0 & 10/3	 & \\ \hline
+        0 & $x_4$ & 0 & -31/3 & 0 & 1 & 5/3 & -1 & 38/3 & \\ \hline
+         & $\Delta_j$ & 0 & -7/3 & 0 & 0 & 2/3 & 0 &  &  \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{equation*}
+	\Delta_j = c_j - \sum_{i=1}^{3} c_\text{бi} \alpha_{ij}  
+\end{equation*}
+
+\begin{equation*}
+	\Delta_k = \min_{j=1 \dots 6} \Delta_j = \Delta_2 = -\frac{7}{3}
+\end{equation*}
+
+\begin{equation*}
+	\Theta_t = \min_{i: \Theta_i \geqslant 0} \Theta_i = \Theta_3 = \frac{11}{8}
+\end{equation*}
+
+\begin{equation*}
+	\Theta_t = \frac{b_t}{c_\text{bt}} = \frac{b_t}{c_l} = \frac{b_1}{c_\text{b1}} = \frac{b_1}{c_\text{3}}
+\end{equation*}
+
+$t = 1$ - ведучий рядок
+
+$k = 2$ - ведучий стовпець
+
+$a_{tk} = a_{12}$ - ведучий елемент
+
+$l = 3$
+
+$l$-у змінну виводимо з базису і вводимо $k$-у.
+
+\subsubsection{Крок №5}
+
+Перерахуємо симплекс-таблицю і отримаємо:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+         &  & $c_1$ & $c_2$ & $c_3$ & $c_4$ & $c_5$ & $c_6$ & & \\ \hline
+         &  & -2 & -1 & 0 & 0 & 0 & M &  &  \\ \hline
+         $c_\text{б}$ & $X_\text{б}$ & $A_1$ & $A_2$ & $A_3$ & $A_4$ & $A_5$ & $A_6$ & $b$  & $\Theta$ \\ \hline
+        -1 & $x_2$ & 0 & 1 & 3/8 & 0 & -1/8 & 0 & 11/8 & \\ \hline
+        -2 & $x_1$ & 1 & 0 & 1/4 & 0 & 1/4 & 0 & 17/4	 & \\ \hline
+        0 & $x_4$ & 0 & 0 & 31/8 & 1 & 3/8 & -8/3 & 215/8 & \\ \hline
+         & $\Delta_j$ & 0 & 0 & 7/8 & 0 & 3/8 & M &  &  \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{equation*}
+	\Delta_j = c_j - \sum_{i=1}^{3} c_\text{бi} \alpha_{ij}  
+\end{equation*}
+
+\begin{equation*}
+	\Delta_k = \min_{j=1 \dots 6} \Delta_j = \Delta_2 = -\frac{7}{3}
+\end{equation*}
+
+Оскільки $\min_{j=1 \dots 6} \Delta_j \geqslant 0$, ми можемо завершити симплекс-метод
+
+\subsubsection{Відповідь}
+
+
+\begin{equation*}
+\text{При }\overline{x'} = \left(x_1, x_2, x_3, x_4, x_5, y_1\right) = \left(\frac{17}{4},\frac{11}{8}, 0, \frac{215}{8}, 0, 0\right)
+\end{equation*}
+
+\begin{equation*}
+\text{функція }L' = -2x_1 - x_2 + 0x_3 + 0x_4 + 0x_5 + M(y_1) \rightarrow \min,
+\end{equation*}
+
+
+\begin{equation*}
+\text{отже }L = -2x_1 - x_2 \rightarrow \min \text{, при } x_1 = \frac{17}{4}, x_2 = \frac{11}{8}
+\end{equation*}
+
+
+\end{document}
