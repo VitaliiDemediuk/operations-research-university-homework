@@ -1,0 +1,361 @@
+\documentclass[a4paper, 12pt]{article}
+
+%Ukrainian language
+
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,ukrainian]{babel}
+
+%Math
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+
+% Images
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+%Plots
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{patterns}
+
+%Title
+\author{Демедюк Віталій}
+\title{Дослідження операцій\\
+	   Домашня робота №2}
+\date{\today}
+
+%Text color
+\usepackage{xcolor}
+
+%Multirow
+\usepackage{multirow}
+
+\usepackage{float}
+
+\usepackage[pdftex,
+colorlinks,%
+linkcolor=blue,citecolor=red,urlcolor=blue,
+hyperindex,%
+plainpages=false,%
+bookmarksopen,%
+bookmarksnumbered,%
+unicode]{hyperref}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+
+
+\newpage
+
+\section{Пряма задача $\rightarrow$ двоїста задача}
+
+\subsection{Пряма задача}
+
+Цільова функція:
+
+\begin{equation*}
+L = 2x_1 + x_2 \rightarrow \max
+\end{equation*}
+Обмеження:
+
+\begin{equation*}
+\left\{
+\begin{aligned}
+	x_1 &+ 2x_2 \leq 7,\\
+	5x_1 &+ 7x_2 \geq 4,\\
+	3x_1 &- 2x_2 \leq 10,\\
+	x_1 &\geq 0, x_2 \geq 0. 
+\end{aligned}
+\right.
+\Longleftrightarrow
+\left\{
+\begin{aligned}
+	x_1 &+ 2x_2 \leq 7,\\
+	-5x_1 &- 7x_2 \leq -4,\\
+	3x_1 &- 2x_2 \leq 10,\\
+	x_1 &\geq 0, x_2 \geq 0. 
+\end{aligned}
+\right.
+\end{equation*}
+
+\subsection{Двоїста задача}
+
+Цільова функція:
+
+\begin{equation*}
+F = 7y_1 - 4y_2 + 10y_3 \rightarrow \min
+\end{equation*}
+Обмеження:
+
+\begin{equation*}
+\left\{
+\begin{aligned}
+	y_1 &- 5y_2 + 3y_3 \geq 2,\\
+	2y_1 &- 7y_2 - 2y_3 \geq 1,\\
+	y_1 &\geq 0, y_2 \geq 0, y_3 \geq 0. 
+\end{aligned}
+\right.
+\end{equation*}
+
+\section{Двоїста ЗЗЛП $\rightarrow$ двоїста КЗЛП}
+
+\subsection{Двоїста ЗЗЛП $\rightarrow$ двоїста СЗЛП}
+
+
+Цільова функція:
+
+\begin{equation*}
+F = 7y_1 - 4y_2 + 10y_3 + 0y_4 + 0y_5 \rightarrow \min
+\end{equation*}
+
+Обмеження:
+
+\begin{equation*}
+\left\{
+\begin{aligned}
+	y_1 &- 5y_2 + 3y_3 - y_4 \textcolor{white}{+ 0y_5} = 2,\\
+	2y_1 &- 7y_2 - 2y_3 \textcolor{white}{+ 0y_4} - y_5 = 1.
+\end{aligned}
+\right.
+\end{equation*}
+
+\[ y_1, y_2, y_3, y_4, y_5 \geq 0 \]
+
+
+\subsection{Двоїста СЗЛП $\rightarrow$ двоїста КЗЛП (М-задача)}
+
+Запишемо СЗЛП у векторній формі
+
+\begin{equation*}
+\overline{y} = \left(y_1, y_2, y_3, y_4, y_5\right)^T \text{ -- вектор-стовпець змінних}
+\end{equation*}
+
+\begin{equation*}
+\overline{b} = \left(b_1, b_2, b_3, b_4, b_5\right) = (7,-4,10,0,0) \text{ -- вектор коефіціентів у фунції } F
+\end{equation*}
+
+\begin{equation*}
+F = \overline{b}\overline{y} \rightarrow \min
+\end{equation*}
+
+$A^T - \text{матриця коефіціентів системи обмежень}$
+
+\begin{equation*}
+ A^T = \Vert a_{ji} \Vert = 
+\begin{pmatrix}
+	1 & -5 & 3 & -1 & 0\\
+	2 & -7 & -2 & 0 & -1
+\end{pmatrix}
+\end{equation*}
+
+$ \overline{c} - \text{вектор, що } A^T\overline{y} = \overline{c} $
+
+\begin{equation*}
+ \overline{c} = \left(2, 1 \right)^T
+\end{equation*}
+
+В КЗЛП повинні виконуватися наступні умови:
+
+$\overline{c} \geqslant \overline{0} \text{, } \overline{y} \geqslant \overline{0} \text{, } A^T\overline{y} = \overline{c} \text{, } A^T - \text{містить одиничну підматрицю}$\\
+
+Можемо побачити, що у нас не виконується остання умова, тому скористаємся М-методом, щоб добавити штучний базис та отримати М-задачу з початковим базисним роз'язком\\
+
+\begin{equation*}
+F' = 7y_1 - 4y_2 + 10y_3 + 0y_4 + 0y_5 + M(w_1 + w_2) \rightarrow \min
+\end{equation*}
+
+
+\begin{equation*}
+\left\{
+\begin{aligned}
+	y_1 &- 5y_2 + 3y_3 - y_4 \textcolor{white}{+ 0y_5} + w_1 \textcolor{white}{+ 0w_2} = 2,\\
+	2y_1 &- 7y_2 - 2y_3 \textcolor{white}{+ 0y_4} - y_5 \textcolor{white}{+ 0w_1} + w_2 = 1.
+\end{aligned}
+\right.
+\end{equation*}
+
+Векторна форма
+
+\begin{equation*}
+\overline{y'} = \left(y_1, y_2, y_3, y_4, y_5, w_1, w_2\right)^T
+\end{equation*}
+
+\begin{equation*}
+\overline{b'} = \left(b_1, b_2, b_3, b_4, b_5, b_6, b_7\right) = (7,-4,10,0,0,M,M)
+\end{equation*}
+
+\begin{equation*}
+F' = \overline{b'}\overline{y'} \rightarrow \min
+\end{equation*}
+
+\begin{equation*}
+A^T{'} = \Vert a_{ji} \Vert = 
+\begin{pmatrix}
+	1 & -5 & 3 & -1 & 0 & 1 & 0\\
+	2 & -7 & -2 & 0 & -1 & 0 & 1
+\end{pmatrix}
+\end{equation*}
+
+\begin{equation*}
+ \overline{c} = \left( 2, 1 \right)^T
+\end{equation*}
+
+\begin{equation*}
+ A^T{'}\overline{y'} = \overline{c}
+\end{equation*}
+
+
+\section{Симплекс-метод}
+
+\subsection{Розв'язок М-задачі симплекс-методом}
+
+\subsubsection{Крок №1}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+         &  & $b_1$ & $b_2$ & $b_3$ & $b_4$ & $b_5$ & $b_6$ & $b_7$ & & \\ \hline
+         &  & 7 & -4 & 10 & 0 & 0 & M & M & &  \\ \hline
+         $b_\text{б}$ & $y'_\text{б}$ & $A^T{'}_1$ & $A^T{'}_2$ & $A^T{'}_3$ & $A^T{'}_4$ & $A^T{'}_5$ & $A^T{'}_6$ & $A^T{'}_7$ & $c$  & $\Theta$ \\ \hline
+        M & $w_1$ & 1 & -5 & 3 & -1 & 0 & 1 & 0 & 2 & 2 \\ \hline
+        M & $w_2$ & 2 & -7 & -2 & 0 & -1 & 0 & 1 & 1 & 1/2 \\ \hline
+         & $\Delta_i$ & 7-3M & -4+12M & 10-M & M & M & 0 & 0 & &  \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{equation*}
+	\Delta_i = b_i - \sum_{j=1}^{2} b_\text{бj} \alpha_{ji}  
+\end{equation*}
+
+\begin{equation*}
+	\Delta_k = \min_{i=1 \dots 7} \Delta_i = \Delta_1 = 7-3M
+\end{equation*}
+
+\begin{equation*}
+	\Theta_t = \min_{j: \Theta_j \geqslant 0} \Theta_j = \Theta_2 = \frac{4}{7}
+\end{equation*}
+
+\begin{equation*}
+	\Theta_t = \frac{b_t}{A^T{'}_{kt}} = \frac{b_2}{A^T{'}_{k2}}
+\end{equation*}
+
+$t = 2$ - ведучий рядок
+
+$k = 1$ - ведучий стовпець
+
+$a_{tk} = a_{21}$ - ведучий елемент
+
+$l = 7$
+
+$l$-у змінну виводимо з базису і вводимо $k$-у.
+
+\subsubsection{Крок №2}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+         &  & $b_1$ & $b_2$ & $b_3$ & $b_4$ & $b_5$ & $b_6$ & $b_7$ & & \\ \hline
+         &  & 7 & -4 & 10 & 0 & 0 & M & M & &  \\ \hline
+         $b_\text{б}$ & $y'_\text{б}$ & $A^T{'}_1$ & $A^T{'}_2$ & $A^T{'}_3$ & $A^T{'}_4$ & $A^T{'}_5$ & $A^T{'}_6$ & $A^T{'}_7$ & $c$  & $\Theta$ \\ \hline
+        M & $w_1$ & 0 & -3/2 & 4 & -1 & 1/2 & 1 & -1/2 & 3/2 & 3/8 \\ \hline
+        7 & $y_1$ & 1 & -7/2 & -1 & 0 & -1/2 & 0 & 1/2 & 1/2 & \\ \hline
+         & $\Delta_i$ & 0 & 41/2 + 3M/2 & 17-4M	& M & 7/2 - M/2 & 0 & 3M/2 - 7/2 & & \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{equation*}
+	\Delta_i = b_i - \sum_{j=1}^{2} b_\text{бj} \alpha_{ji}  
+\end{equation*}
+
+\begin{equation*}
+	\Delta_k = \min_{i=1 \dots 7} \Delta_i = \Delta_3 = 17-4M
+\end{equation*}
+
+\begin{equation*}
+	\Theta_t = \min_{j: \Theta_j \geqslant 0} \Theta_j = \Theta_2 = \frac{4}{7}
+\end{equation*}
+
+\begin{equation*}
+	\Theta_t = \frac{b_t}{A^T{'}_{kt}} = \frac{b_2}{A^T{'}_{k1}}
+\end{equation*}
+
+$t = 1$ - ведучий рядок
+
+$k = 3$ - ведучий стовпець
+
+$a_{tk} = a_{13}$ - ведучий елемент
+
+$l = 6$
+
+$l$-у змінну виводимо з базису і вводимо $k$-у.
+
+\subsubsection{Крок №3}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+         &  & $b_1$ & $b_2$ & $b_3$ & $b_4$ & $b_5$ & $b_6$ & $b_7$ & & \\ \hline
+         &  & 7 & -4 & 10 & 0 & 0 & M & M & &  \\ \hline
+         $b_\text{б}$ & $y'_\text{б}$ & $A^T{'}_1$ & $A^T{'}_2$ & $A^T{'}_3$ & $A^T{'}_4$ & $A^T{'}_5$ & $A^T{'}_6$ & $A^T{'}_7$ & $c$  & $\Theta$ \\ \hline
+        10 & $y_3$ & 0 & -3/8 & 1 & -1/4 & 1/8 & 1/4 & -1/8 & 3/8 & \\ \hline
+        7 & $y_1$ & 1 & -31/8 & 0 & -1/4 & -3/8 & 1/4 & 3/8 & 7/8 & \\ \hline
+         & $\Delta_i$ & 0 & 303/8 & 0 & 45/4 & 67/8 & 39/4 & 45/8 & & \\ \hline
+    \end{tabular}
+\end{table}
+
+Оскільки $\min_{i=1 \dots 6} \Delta_i \geqslant 0$, ми можемо завершити симплекс-метод
+
+\subsubsection{Результат застосування симплекс-метода до двоїстоої задачі}
+
+
+\begin{equation*}
+\text{При }\overline{y'} = \left(y_1, y_2, y_3, y_4, y_5, w_1, w2 \right) = \left(\frac{7}{8}, 0, \frac{3}{8}, 0, 0, 0, 0\right)
+\end{equation*}
+
+\begin{equation*}
+\text{функція }F' = 7y_1 - 4y_2 + 10y_3 + 0y_4 + 0y_5 + M(w_1 + w_2) \rightarrow \min,
+\end{equation*}
+
+
+\begin{equation*}
+\text{отже }F = 7y_1 - 4y_2 + 10y_3 \rightarrow \min \text{, при } y_1 = \frac{7}{8}, y_2 = 0, y_1 = \frac{3}{8}
+\end{equation*}
+
+\subsection{ Перехід від розв'язку двоїстої ЗЛП до розв'язку прямої ЗЛП }
+
+\begin{equation*}
+	B = \left(A^T{'}_3, A^T{'}_1\right) = 
+	\begin{pmatrix*}
+		3 & 1\\
+		-2 & 2
+	\end{pmatrix*}
+\end{equation*}
+
+\begin{equation*}
+	B^{-1} = 
+	\begin{pmatrix*}
+		\frac{1}{4} & -\frac{1}{8}\\
+		\frac{1}{4} & \frac{3}{8}
+	\end{pmatrix*}
+\end{equation*}
+
+\begin{equation*}
+	x^* = (x_1, x_2) \text{ -- розв'язок прямої ЗЛП}.
+\end{equation*}
+
+\begin{equation*}
+	x^* = b_{\text{б}}B^{-1} = (10,7)
+	\begin{pmatrix*}
+		\frac{1}{4} & -\frac{1}{8}\\
+		\frac{1}{4} & \frac{3}{8}
+	\end{pmatrix*} = \left(\frac{17}{4}, \frac{11}{8}\right)
+\end{equation*}
+
+\end{document}
