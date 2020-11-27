@@ -1,0 +1,378 @@
+\documentclass[a4paper, 12pt]{article}
+
+%Ukrainian language
+
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,ukrainian]{babel}
+
+%Math
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+
+% Images
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+%Plots
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{patterns}
+
+%Title
+\author{Демедюк Віталій}
+\title{Дослідження операцій\\
+	   Домашня робота №5}
+\date{\today}
+
+%Text color
+\usepackage{xcolor}
+
+%Multirow
+\usepackage{multirow}
+
+\usepackage{float}
+
+\usepackage{bigstrut}
+\usepackage{colortbl}
+
+\usepackage[pdftex,
+colorlinks,%
+linkcolor=blue,citecolor=red,urlcolor=blue,
+hyperindex,%
+plainpages=false,%
+bookmarksopen,%
+bookmarksnumbered,%
+unicode]{hyperref}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+
+\newpage
+\section{Умова}
+
+\begin{table}[H]
+  \centering
+    \begin{tabular}{|l|r|r|r|r|r|}
+    \hline
+          & \multicolumn{1}{l|}{$b_1$} & \multicolumn{1}{l|}{$b_2$} & \multicolumn{1}{l|}{$b_3$} & \multicolumn{1}{l|}{$b_4$} & \multicolumn{1}{l|}{ Запаси} \bigstrut\\
+    \hline
+    $a_1$   & 2     & 4     & 1     & 3     & 30 \bigstrut\\
+    \hline
+    $a_2$   & 5     & 6     & 5     & 4     & 20 \bigstrut\\
+    \hline
+    $a_3$   & 3     & 7     & 9     & 5     & 40 \bigstrut\\
+    \hline
+    $a_4$   & 1     & 2     & 2     & 7     & 50 \bigstrut\\
+    \hline
+    Потреба & 35    & 20    & 55    & 30    &  \bigstrut\\
+    \hline
+    \end{tabular}%
+  \label{tab:condition}%
+   \caption{Умова}
+\end{table}%
+
+Необхідна й достатня умова розв'язності
+
+\[ a_1 + a_2 + a_3 + a_ 4 = 140\]
+\[ b_1 + b_2 + b_3 + b_ 4 = 140\]
+Запаси й потреби рівні. Умова виконується!
+
+\newpage
+\section{Розв'язок}
+
+\subsection{Опорний план}
+Найдемо опорний план методом найменшої вартості.
+
+\begin{table}[H]
+  \centering
+    \begin{tabular}{|c|cccc|cccc|cccc|cccc|r|}
+    \hline
+          & \multicolumn{4}{c|}{1}        & \multicolumn{4}{c|}{2}        & \multicolumn{4}{c|}{3}        & \multicolumn{4}{c|}{4}        & \multicolumn{1}{c|}{a} \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{1} &       &       & \multicolumn{1}{r|}{} & \textbf{2} &       &       & \multicolumn{1}{r|}{} & \textbf{4} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{1} &       &       & \multicolumn{1}{r|}{} & \textbf{3} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{30}}} \bigstrut\\
+\cline{5-5}\cline{9-9}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} & \multirow{3}[4]{*}{} &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{30}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} & \multicolumn{2}{c}{} &       &  \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{2} &       &       & \multicolumn{1}{r|}{} & \textbf{5} &       &       & \multicolumn{1}{r|}{} & \textbf{6} &       &       & \multicolumn{1}{r|}{} & \textbf{5} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{4} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{20}}} \bigstrut\\
+\cline{5-5}\cline{9-9}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} & \multirow{3}[4]{*}{} &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{20}}} &       &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{} &       &       &       & \multicolumn{1}{c|}{} &       &       &       & \multicolumn{1}{c|}{} &       &       &       & \multicolumn{1}{c|}{} & \multicolumn{2}{c}{} &       &  \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{3} &       &       & \multicolumn{1}{r|}{} & \textbf{3} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{7} &       & \multicolumn{2}{c|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{9} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{5} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{40}}} \bigstrut\\
+\cline{5-5}\cline{9-9}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{5}}} & \multirow{3}[4]{*}{} &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{25}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{10}}} &       &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &       &       &       & \multicolumn{1}{c|}{} & \multicolumn{2}{c}{} &       &  \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{4} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{1} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{2} &       &       & \multicolumn{1}{r|}{} & \textbf{2} &       &       & \multicolumn{1}{r|}{} & \textbf{7} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{50}}} \bigstrut\\
+\cline{5-5}\cline{9-9}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{35}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{15}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{} &       &       &       & \multicolumn{1}{c|}{} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &       &       &       & \multicolumn{1}{c|}{} & \multicolumn{2}{c}{} &       &  \bigstrut\\
+    \hline
+    b     & \multicolumn{4}{c|}{\textbf{35}} & \multicolumn{4}{c|}{\textbf{20}} & \multicolumn{4}{c|}{\textbf{55}} & \multicolumn{4}{c|}{\textbf{30}} &  \bigstrut\\
+    \hline
+    \end{tabular}%
+  \caption{Опорний план}
+  \label{tab:plan}%
+\end{table}%
+
+\[ L(x) = 30\cdot1+20\cdot4+5\cdot7+25\cdot9+10\cdot5+35\cdot1+15\cdot2 = 485 \]
+
+\newpage
+\subsection{Ітерації}
+
+\subsubsection{Ітерація №1}
+
+Знайдемо потенціали:\\
+поставимо $U_1 = 0$;\\
+порахуємо всі інші потенціали за формулою $c_{ij} = v_j - u_i$.\\
+Використовуємо двоїстий критерій оптимальності:\\
+знайдемо симплекс-різниці по формулі $\vartriangle_{ij} = c_{ij} - (v_j + u_i) $;\\
+оскільки в таблиці є від'ємні симплекс-різниці, то виберемо змінну(жовтий колір), якій відповідає найменша симплекс-різниця і введемо її у базис.
+
+\begin{table}[H]
+  \centering
+    \begin{tabular}{|c|cccc|cccc|cccc|cccc|rr|}
+    \hline
+    C     & \multicolumn{4}{c|}{1}        & \multicolumn{4}{c|}{2}        & \multicolumn{4}{c|}{3}        & \multicolumn{4}{c|}{4}        & \multicolumn{1}{c|}{a} & \multicolumn{1}{c|}{U} \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{1} &       &       & \multicolumn{1}{r|}{} & \textbf{2} &       &       & \multicolumn{1}{r|}{} & \textbf{4} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{1} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{3} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{30}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{0}}} \bigstrut\\
+\cline{5-5}\cline{9-9}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} & \multirow{3}[4]{*}{} &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{30}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{\textbf{4}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{5}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{6}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{2} &       &       & \multicolumn{1}{r|}{} & \textbf{5} &       &       & \multicolumn{1}{r|}{} & \textbf{6} & \multicolumn{1}{c|}{\cellcolor[rgb]{ 1,  0,  0}\textbf{+}} &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  1,  0}\textbf{5} & \multicolumn{1}{c|}{\cellcolor[rgb]{ 1,  0,  0}\textbf{-}} &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ .439,  .678,  .278}\textbf{4} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{20}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{-7}}} \bigstrut\\
+\cline{5-5}\cline{9-10}\cline{13-14}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} & \multirow{3}[4]{*}{} &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{20}}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{\textbf{0}} &       &       &       & \multicolumn{1}{c|}{\textbf{0}} &       &       &       & \multicolumn{1}{c|}{\textbf{-3}} &       &       &       & \multicolumn{1}{c|}{} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{3} &       &       & \multicolumn{1}{r|}{} & \textbf{3} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{7} & \multicolumn{1}{c|}{\cellcolor[rgb]{ 1,  0,  0}\textbf{-}} & \multicolumn{2}{c|}{} & \cellcolor[rgb]{ .439,  .678,  .278}\textbf{9} & \multicolumn{1}{c|}{\cellcolor[rgb]{ 1,  0,  0}\textbf{+}} &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ .439,  .678,  .278}\textbf{5} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{40}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{-8}}} \bigstrut\\
+\cline{5-5}\cline{9-10}\cline{13-14}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{5}}} & \multirow{3}[4]{*}{} &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{25}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{10}}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{\textbf{-3}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &       &       &       & \multicolumn{1}{c|}{} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{4} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{1} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{2} &       &       & \multicolumn{1}{r|}{} & \textbf{2} &       &       & \multicolumn{1}{r|}{} & \textbf{7} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{50}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{-3}}} \bigstrut\\
+\cline{5-5}\cline{9-9}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{35}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{15}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{} &       &       &       & \multicolumn{1}{c|}{} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{-2}} &       &       &       & \multicolumn{1}{c|}{\textbf{7}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    b     & \multicolumn{4}{c|}{\textbf{35}} & \multicolumn{4}{c|}{\textbf{20}} & \multicolumn{4}{c|}{\textbf{55}} & \multicolumn{4}{c|}{\textbf{30}} &       &  \bigstrut\\
+\cline{1-17}    V     & \multicolumn{4}{c|}{\textbf{-2}} & \multicolumn{4}{c|}{\textbf{-1}} & \multicolumn{4}{c|}{\textbf{1}} & \multicolumn{4}{c|}{\textbf{-3}} &       &  \bigstrut\\
+    \hline
+    \end{tabular}%
+  \caption{Ітерація №1}
+  \label{tab:it1}%
+\end{table}%
+
+Покращуємо опорний план перераховуючи таблицю.\\
+
+Цикл перерозподілу перевезень(жовтий та зелений колір в таблиці вище) $(2,3 \longrightarrow 2,4 \longrightarrow 3,4 \longrightarrow 3,3)$.\\
+
+Виберемо $\theta$ як мінімальний з елементів циклу зі знаком "$-$". $\theta = 20$. Віднімемо $\theta$ від елементів циклу зі знаком "$-$". Додамо $\theta$ до елементів циклу зі знаком "$+$".
+
+\subsubsection{Ітерація №2}
+
+Знайдемо потенціали:\\
+поставимо $U_1 = 0$;\\
+порахуємо всі інші потенціали за формулою $c_{ij} = v_j - u_i$.\\
+Використовуємо двоїстий критерій оптимальності:\\
+знайдемо симплекс-різниці по формулі $\vartriangle_{ij} = c_{ij} - (v_j + u_i) $;\\
+оскільки в таблиці є від'ємні симплекс-різниці, то виберемо змінну(жовтий колір), якій відповідає найменша симплекс-різниця і введемо її у базис.
+
+\begin{table}[H]
+  \centering
+    \begin{tabular}{|c|cccc|cccc|cccc|cccc|rr|}
+    \hline
+    C     & \multicolumn{4}{c|}{1}        & \multicolumn{4}{c|}{2}        & \multicolumn{4}{c|}{3}        & \multicolumn{4}{c|}{4}        & \multicolumn{1}{c|}{a} & \multicolumn{1}{c|}{U} \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{1} &       &       & \multicolumn{1}{r|}{} & \textbf{2} &       &       & \multicolumn{1}{r|}{} & \textbf{4} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{1} &       &       & \multicolumn{1}{r|}{} & \textbf{3} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{30}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{0}}} \bigstrut\\
+\cline{5-5}\cline{9-9}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{30}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{\textbf{4}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{5}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{0}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{6}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{2} &       &       & \multicolumn{1}{r|}{} & \textbf{5} &       &       & \multicolumn{1}{r|}{} & \textbf{6} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{5} &       &       & \multicolumn{1}{r|}{} & \textbf{4} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{20}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{-4}}} \bigstrut\\
+\cline{5-5}\cline{9-9}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{20}}} & \multirow{3}[4]{*}{} &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{\textbf{3}} &       &       &       & \multicolumn{1}{c|}{\textbf{3}} &       &       &       & \multicolumn{1}{c|}{\textbf{0}} &       &       &       & \multicolumn{1}{c|}{\textbf{3}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{3} & \multicolumn{1}{c|}{\cellcolor[rgb]{ 1,  0,  0}\textbf{+}} &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  1,  0}\textbf{3} & \multicolumn{1}{c|}{\cellcolor[rgb]{ 1,  0,  0}\textbf{-}} &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 0,  .69,  .314}\textbf{7} &       & \multicolumn{2}{c|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{9} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{5} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{40}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{-8}}} \bigstrut\\
+\cline{2-2}\cline{5-6}\cline{9-9}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{5}}} & \multirow{3}[4]{*}{} &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{5}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{30}}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{\textbf{-3}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{0}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{0}} &       &       &       & \multicolumn{1}{c|}{\textbf{0}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{4} & \multicolumn{1}{c|}{\cellcolor[rgb]{ 1,  0,  0}\textbf{-}} &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 0,  .69,  .314}\textbf{1} & \multicolumn{1}{c|}{\cellcolor[rgb]{ 1,  0,  0}\textbf{+}} &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 0,  .69,  .314}\textbf{2} &       &       & \multicolumn{1}{r|}{} & \textbf{2} &       &       & \multicolumn{1}{r|}{} & \textbf{7} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{50}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{-3}}} \bigstrut\\
+\cline{2-2}\cline{5-6}\cline{9-9}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{35}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{15}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{\textbf{0}} &       &       &       & \multicolumn{1}{c|}{\textbf{0}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{-2}} &       &       &       & \multicolumn{1}{c|}{\textbf{7}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    b     & \multicolumn{4}{c|}{\textbf{35}} & \multicolumn{4}{c|}{\textbf{20}} & \multicolumn{4}{c|}{\textbf{55}} & \multicolumn{4}{c|}{\textbf{30}} &       &  \bigstrut\\
+\cline{1-17}    V     & \multicolumn{4}{c|}{\textbf{-2}} & \multicolumn{4}{c|}{\textbf{-1}} & \multicolumn{4}{c|}{\textbf{1}} & \multicolumn{4}{c|}{\textbf{-3}} &       &  \bigstrut\\
+    \hline
+    \end{tabular}%
+  \caption{Ітерація №2}
+  \label{tab:it2}%
+\end{table}%
+
+Покращуємо опорний план перераховуючи таблицю.\\
+
+Цикл перерозподілу перевезень(жовтий та зелений колір в таблиці вище) $(3,1 \longrightarrow 3,2 \longrightarrow 4,2 \longrightarrow 4,1)$.\\
+
+Виберемо $\theta$ як мінімальний з елементів циклу зі знаком "$-$". $\theta = 5$. Віднімемо $\theta$ від елементів циклу зі знаком "$-$". Додамо $\theta$ до елементів циклу зі знаком "$+$".
+
+\subsubsection{Ітерація №3}
+
+Знайдемо потенціали:\\
+поставимо $U_1 = 0$;\\
+порахуємо всі інші потенціали за формулою $c_{ij} = v_j - u_i$.\\
+Використовуємо двоїстий критерій оптимальності:\\
+знайдемо симплекс-різниці по формулі $\vartriangle_{ij} = c_{ij} - (v_j + u_i) $;\\
+оскільки в таблиці є від'ємні симплекс-різниці, то виберемо змінну(жовтий колір), якій відповідає найменша симплекс-різниця і введемо її у базис.
+
+\begin{table}[H]
+  \centering
+    \begin{tabular}{|c|cccc|cccc|cccc|cccc|rr|}
+    \hline
+    C     & \multicolumn{4}{c|}{1}        & \multicolumn{4}{c|}{2}        & \multicolumn{4}{c|}{3}        & \multicolumn{4}{c|}{4}        & \multicolumn{1}{c|}{a} & \multicolumn{1}{c|}{U} \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{1} &       &       & \multicolumn{1}{r|}{} & \textbf{2} &       &       & \multicolumn{1}{r|}{} & \textbf{4} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{1} &       &       & \multicolumn{1}{r|}{} & \textbf{3} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{30}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{0}}} \bigstrut\\
+\cline{5-5}\cline{9-9}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{30}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{\textbf{7}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{8}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{0}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{6}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{2} &       &       & \multicolumn{1}{r|}{} & \textbf{5} &       &       & \multicolumn{1}{r|}{} & \textbf{6} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{5} &       &       & \multicolumn{1}{r|}{} & \textbf{4} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{20}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{-4}}} \bigstrut\\
+\cline{5-5}\cline{9-9}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{20}}} & \multirow{3}[4]{*}{} &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{\textbf{6}} &       &       &       & \multicolumn{1}{c|}{\textbf{6}} &       &       &       & \multicolumn{1}{c|}{\textbf{0}} &       &       &       & \multicolumn{1}{c|}{\textbf{3}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{3} & \multicolumn{1}{c|}{\cellcolor[rgb]{ 1,  0,  0}\textbf{+}} &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 0,  .69,  .314}\textbf{3} &       &       & \multicolumn{1}{r|}{} & \textbf{7} & \multicolumn{1}{c|}{\cellcolor[rgb]{ 1,  0,  0}\textbf{-}} & \multicolumn{2}{c|}{} & \cellcolor[rgb]{ 0,  .69,  .314}\textbf{9} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{5} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{40}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{-8}}} \bigstrut\\
+\cline{2-2}\cline{5-5}\cline{9-10}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{5}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} & \multirow{3}[4]{*}{} &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{5}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{30}}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{\textbf{0}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{3}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{0}} &       &       &       & \multicolumn{1}{c|}{\textbf{0}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{4} & \multicolumn{1}{c|}{\cellcolor[rgb]{ 1,  0,  0}\textbf{-}} &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 0,  .69,  .314}\textbf{1} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{2} & \multicolumn{1}{c|}{\cellcolor[rgb]{ 1,  0,  0}\textbf{+}} &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  1,  0}\textbf{2} &       &       & \multicolumn{1}{r|}{} & \textbf{7} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{50}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{-6}}} \bigstrut\\
+\cline{2-2}\cline{5-5}\cline{9-10}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{30}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{20}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{\textbf{0}} &       &       &       & \multicolumn{1}{c|}{\textbf{0}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{-5}} &       &       &       & \multicolumn{1}{c|}{\textbf{4}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    b     & \multicolumn{4}{c|}{\textbf{35}} & \multicolumn{4}{c|}{\textbf{20}} & \multicolumn{4}{c|}{\textbf{55}} & \multicolumn{4}{c|}{\textbf{30}} &       &  \bigstrut\\
+\cline{1-17}    V     & \multicolumn{4}{c|}{\textbf{-5}} & \multicolumn{4}{c|}{\textbf{-4}} & \multicolumn{4}{c|}{\textbf{1}} & \multicolumn{4}{c|}{\textbf{-3}} &       &  \bigstrut\\
+    \hline
+    \end{tabular}%
+  \caption{Ітерація №3}
+  \label{tab:it3}%
+\end{table}%
+
+Покращуємо опорний план перераховуючи таблицю.\\
+
+Цикл перерозподілу перевезень(жовтий та зелений колір в таблиці вище) $(4,3 \longrightarrow 4,1 \longrightarrow 3,1 \longrightarrow 3,3)$.\\
+
+Виберемо $\theta$ як мінімальний з елементів циклу зі знаком "$-$". $\theta = 5$. Віднімемо $\theta$ від елементів циклу зі знаком "$-$". Додамо $\theta$ до елементів циклу зі знаком "$+$".
+
+\subsubsection{Ітерація №4}
+
+Знайдемо потенціали:\\
+поставимо $U_1 = 0$;\\
+порахуємо всі інші потенціали за формулою $c_{ij} = v_j - u_i$.\\
+Використовуємо двоїстий критерій оптимальності:\\
+знайдемо симплекс-різниці по формулі $\vartriangle_{ij} = c_{ij} - (v_j + u_i) $;\\
+оскільки в таблиці є від'ємні симплекс-різниці, то виберемо змінну(жовтий колір), якій відповідає найменша симплекс-різниця і введемо її у базис.
+
+\begin{table}[H]
+  \centering
+    \begin{tabular}{|c|cccc|cccc|cccc|cccc|rr|}
+    \hline
+    C     & \multicolumn{4}{c|}{1}        & \multicolumn{4}{c|}{2}        & \multicolumn{4}{c|}{3}        & \multicolumn{4}{c|}{4}        & \multicolumn{1}{c|}{a} & \multicolumn{1}{c|}{U} \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{1} &       &       & \multicolumn{1}{r|}{} & \textbf{2} &       &       & \multicolumn{1}{r|}{} & \textbf{4} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{1} &       &       & \multicolumn{1}{r|}{} & \textbf{3} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{30}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{0}}} \bigstrut\\
+\cline{5-5}\cline{9-9}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{30}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{\textbf{2}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{3}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{0}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{1}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{2} &       &       & \multicolumn{1}{r|}{} & \textbf{5} &       &       & \multicolumn{1}{r|}{} & \textbf{6} & \multicolumn{1}{c|}{\cellcolor[rgb]{ 1,  0,  0}\textbf{-}} &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  1,  0}\textbf{5} & \multicolumn{1}{c|}{\cellcolor[rgb]{ 1,  0,  0}\textbf{+}} &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 0,  .69,  .314}\textbf{4} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{20}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{-4}}} \bigstrut\\
+\cline{5-5}\cline{9-10}\cline{13-14}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{20}}} & \multirow{3}[4]{*}{} &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{\textbf{1}} &       &       &       & \multicolumn{1}{c|}{\textbf{1}} &       &       &       & \multicolumn{1}{c|}{\textbf{0}} &       &       &       & \multicolumn{1}{c|}{\textbf{-2}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{3} & \multicolumn{1}{c|}{\cellcolor[rgb]{ 1,  0,  0}\textbf{+}} &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  1,  0}\textbf{3} &       &       & \multicolumn{1}{r|}{} & \textbf{7} &       & \multicolumn{2}{c|}{} & \textbf{9} & \multicolumn{1}{c|}{\cellcolor[rgb]{ 1,  0,  0}\textbf{-}} &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  1,  0}\textbf{5} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{40}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{-3}}} \bigstrut\\
+\cline{2-2}\cline{5-5}\cline{9-9}\cline{13-14}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{10}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} & \multirow{3}[4]{*}{} &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{30}}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{\textbf{0}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{3}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{5}} &       &       &       & \multicolumn{1}{c|}{\textbf{0}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{4} & \multicolumn{1}{c|}{\cellcolor[rgb]{ 1,  0,  0}\textbf{-}} &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  1,  0}\textbf{1} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{2} & \multicolumn{1}{c|}{\cellcolor[rgb]{ 1,  0,  0}\textbf{+}} &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  1,  0}\textbf{2} &       &       & \multicolumn{1}{r|}{} & \textbf{7} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{50}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{-1}}} \bigstrut\\
+\cline{2-2}\cline{5-5}\cline{9-10}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{25}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{20}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{5}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{\textbf{0}} &       &       &       & \multicolumn{1}{c|}{\textbf{0}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{0}} &       &       &       & \multicolumn{1}{c|}{\textbf{4}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    b     & \multicolumn{4}{c|}{\textbf{35}} & \multicolumn{4}{c|}{\textbf{20}} & \multicolumn{4}{c|}{\textbf{55}} & \multicolumn{4}{c|}{\textbf{30}} &       &  \bigstrut\\
+\cline{1-17}    V     & \multicolumn{4}{c|}{\textbf{0}} & \multicolumn{4}{c|}{\textbf{1}} & \multicolumn{4}{c|}{\textbf{1}} & \multicolumn{4}{c|}{\textbf{2}} &       &  \bigstrut\\
+    \hline
+    \end{tabular}%
+  \caption{Ітерація №4}
+  \label{tab:it4}%
+\end{table}%
+
+Покращуємо опорний план перераховуючи таблицю.\\
+
+Цикл перерозподілу перевезень(жовтий та зелений колір в таблиці вище) $(2,4 \longrightarrow 2,3 \longrightarrow 4,3 \longrightarrow 4,1 \longrightarrow 3,1 \longrightarrow 3,4)$.\\
+
+Виберемо $\theta$ як мінімальний з елементів циклу зі знаком "$-$". $\theta = 20$. Віднімемо $\theta$ від елементів циклу зі знаком "$-$". Додамо $\theta$ до елементів циклу зі знаком "$+$".
+
+\subsubsection{Ітерація №5}
+
+Знайдемо потенціали:\\
+поставимо $U_1 = 0$;\\
+порахуємо всі інші потенціали за формулою $c_{ij} = v_j - u_i$.\\
+Використовуємо двоїстий критерій оптимальності:\\
+знайдемо симплекс-різниці по формулі $\vartriangle_{ij} = c_{ij} - (v_j + u_i) $;\\
+в таблиці немає від'ємних симплекс-різниць. Задача розв'язана!
+
+\begin{table}[H]
+  \centering
+    \begin{tabular}{|c|cccc|cccc|cccc|cccc|rr|}
+    \hline
+    C     & \multicolumn{4}{c|}{1}        & \multicolumn{4}{c|}{2}        & \multicolumn{4}{c|}{3}        & \multicolumn{4}{c|}{4}        & \multicolumn{1}{c|}{a} & \multicolumn{1}{c|}{U} \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{1} &       &       & \multicolumn{1}{r|}{} & \textbf{2} &       &       & \multicolumn{1}{r|}{} & \textbf{4} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{1} &       &       & \multicolumn{1}{r|}{} & \textbf{3} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{30}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{0}}} \bigstrut\\
+\cline{5-5}\cline{9-9}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{30}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{\textbf{2}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{3}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{0}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{1}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{2} &       &       & \multicolumn{1}{r|}{} & \textbf{5} &       &       & \multicolumn{1}{r|}{} & \textbf{6} &       &       & \multicolumn{1}{r|}{} & \textbf{5} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{4} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{20}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{-2}}} \bigstrut\\
+\cline{5-5}\cline{9-9}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} & \multirow{3}[4]{*}{} &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{20}}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{\textbf{3}} &       &       &       & \multicolumn{1}{c|}{\textbf{3}} &       &       &       & \multicolumn{1}{c|}{\textbf{2}} &       &       &       & \multicolumn{1}{c|}{\textbf{0}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{3} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{3} &       &       & \multicolumn{1}{r|}{} & \textbf{7} &       & \multicolumn{2}{c|}{} & \textbf{9} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{5} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{40}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{-3}}} \bigstrut\\
+\cline{5-5}\cline{9-9}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{30}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} & \multirow{3}[4]{*}{} &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{10}}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{\textbf{0}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{3}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{5}} &       &       &       & \multicolumn{1}{c|}{\textbf{0}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    \multirow{4}[6]{*}{4} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{1} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{2} &       &       & \multicolumn{1}{r|}{} & \cellcolor[rgb]{ 1,  .753,  0}\textbf{2} &       &       & \multicolumn{1}{r|}{} & \textbf{7} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{50}}} & \multicolumn{1}{c|}{\multirow{4}[6]{*}{\textbf{-1}}} \bigstrut\\
+\cline{5-5}\cline{9-9}\cline{13-13}\cline{17-17}          &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{5}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{20}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{\textbf{25}}} &       &       & \multicolumn{2}{c}{\multirow{2}[2]{*}{}} &       & \multicolumn{1}{c|}{} &  \bigstrut[t]\\
+          &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       &       & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut[b]\\
+\cline{2-2}\cline{6-6}\cline{10-10}\cline{14-14}          & \multicolumn{1}{c|}{\textbf{0}} &       &       &       & \multicolumn{1}{c|}{\textbf{0}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{\textbf{0}} &       &       &       & \multicolumn{1}{c|}{\textbf{4}} & \multicolumn{2}{c}{} &       & \multicolumn{1}{c|}{} &  \bigstrut\\
+    \hline
+    b     & \multicolumn{4}{c|}{\textbf{35}} & \multicolumn{4}{c|}{\textbf{20}} & \multicolumn{4}{c|}{\textbf{55}} & \multicolumn{4}{c|}{\textbf{30}} &       &  \bigstrut\\
+\cline{1-17}    V     & \multicolumn{4}{c|}{\textbf{0}} & \multicolumn{4}{c|}{\textbf{1}} & \multicolumn{4}{c|}{\textbf{1}} & \multicolumn{4}{c|}{\textbf{2}} &       &  \bigstrut\\
+    \hline
+    \end{tabular}%
+  \caption{Ітерація №5}
+  \label{tab:it4}%
+\end{table}%
+
+\newpage
+\section{Відповідь}
+Оптимальний план перевезень:\\
+З пункту видачі №1 30 одиниць продукції $\longrightarrow$ в пункт прийому №3.\\
+З пункту видачі №2 20 одиниць продукції $\longrightarrow$ в пункт прийому №4.\\
+З пункту видачі №3 30 одиниць продукції $\longrightarrow$ в пункт прийому №1.\\
+З пункту видачі №3 10 одиниць продукції $\longrightarrow$ в пункт прийому №4.\\
+З пункту видачі №4 5 одиниць продукції $\longrightarrow$ в пункт прийому №1.\\
+З пункту видачі №4 20 одиниць продукції $\longrightarrow$ в пункт прийому №2.\\
+З пункту видачі №4 25 одиниць продукції $\longrightarrow$ в пункт прийому №3.\\
+
+\end{document}
